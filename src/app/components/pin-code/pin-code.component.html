@@ -1,0 +1,44 @@
+<div class="pin-code">
+  <input
+    (keydown)="onInputKeydown($event)"
+    type="text"
+    [name]="name"
+    [id]="id"
+    [value]="inputValue"
+    readonly
+    class="pin-code__input"
+  />
+
+  <div
+    *ngIf="isKeypadVisible"
+    class="keypad"
+    [style.--pin-code-keypad-grid-columns]="keypadGridColumns"
+    [style.--pin-code-keypad-grid-rows]="keypadGridRows"
+  >
+    <ng-container *ngFor="let item of keypadItems">
+      <button
+        *ngIf="item === -1"
+        type="button"
+        aria-label="Empty"
+        class="keypad__button"
+      ></button>
+
+      <button
+        *ngIf="item >= 0"
+        (click)="onKeypadButtonClick(item)"
+        type="button"
+        class="keypad__button"
+      >
+        {{ item }}
+      </button>
+    </ng-container>
+
+    <button
+      (click)="onKeypadButtonClearClick()"
+      type="button"
+      class="keypad__button keypad__button--clear"
+    >
+      Clear
+    </button>
+  </div>
+</div>

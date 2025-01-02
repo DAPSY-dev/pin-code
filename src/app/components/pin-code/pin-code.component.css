@@ -1,0 +1,25 @@
+:host {
+  --pin-code-keypad-offset-x: 0;
+  --pin-code-keypad-offset-y: 0;
+}
+
+.pin-code {
+  position: relative;
+}
+
+/* .pin-code__input {} */
+
+.keypad {
+  position: absolute;
+  inset-block-start: calc(100% + var(--pin-code-keypad-offset-y));
+  inset-inline-start: var(--pin-code-keypad-offset-x);
+  display: grid;
+  grid-template-columns: repeat(var(--pin-code-keypad-grid-columns), 1fr);
+  grid-template-rows: repeat(calc(var(--pin-code-keypad-grid-rows) + 1), 1fr);
+}
+
+/* .keypad__button {} */
+
+.keypad__button--clear {
+  grid-column: 1 / span var(--pin-code-keypad-grid-columns);
+}
